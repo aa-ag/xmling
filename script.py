@@ -1,7 +1,7 @@
 ###--- IMPORTS ---###
 import xml.etree.ElementTree as ET
 '''
-Warning The xml.etree.ElementTree 
+[!] Warning: The xml.etree.ElementTree 
 module is not secure against maliciously constructed data. 
 If you need to parse untrusted or 
 unauthenticated data see XML vulnerabilities.
@@ -15,7 +15,7 @@ def make_xml():
     '''
     Creates 'root' element with 'xml.etree.ElementTree' object,
     then creates 'product' subelement, and its attributes and elements.
-    Finaly, writes the element tree to a file as XML.
+    Finally, writes the element tree to a file as XML.
     '''
     xml_doc = ET.Element('root')
 
@@ -26,6 +26,7 @@ def make_xml():
     ET.SubElement(product, 'brand', model='testtesttest123').text = "Brand XYZ"
 
     tree = ET.ElementTree(xml_doc)
+    ET.indent(tree, space='    ')
     tree.write('output_test.xml', encoding='UTF-8', xml_declaration=True)
 
 
