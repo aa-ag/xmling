@@ -1,7 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <root>
     <product>
-        <item id="product_id" price="9.99" currency="USD">Product description in detail since attributes already included.</item>
-        <brand model="testtesttest123">Brand XYZ</brand>
+        <item id="1" price="9.99" currency="¥">Lorem ipsum dolor sit amet.</item>
+        <brand model="modelx">Brand X</brand>
+    </product>
+    <product>
+        <item id="2" price="99.99" currency="¥">Consectetuer adipiscing elit.</item>
+        <brand model="modely">Brand Y</brand>
+    </product>
+    <product>
+        <item id="3" price="999.99" currency="¥">Aenean commodo ligula eget dolor.</item>
+        <brand model="modelz">Brand Z</brand>
     </product>
 </root>
