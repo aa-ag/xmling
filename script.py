@@ -66,12 +66,14 @@ def convert_to_dataframe():
         df_rows.append({"id": product_id, "price": product_price, "currency": product_currency,
                         "description": product_description, "brand": product_brand, "brand description": product_brand_description})
 
-    print(df_rows)
+    resulting_df = pd.DataFrame(df_rows, columns=df_columns)
+    print(resulting_df)
 
     '''
-    [{'id': '1', 'price': '9.99', 'currency': '¥', 'description': 'Lorem ipsum dolor sit amet.', 'brand': 'modelx', 'brand description': 'Brand X'}, 
-    {'id': '2', 'price': '99.99', 'currency': '¥', 'description': 'Consectetuer adipiscing elit.', 'brand': 'modely', 'brand description': 'Brand Y'}, 
-    {'id': '3', 'price': '999.99', 'currency': '¥', 'description': 'Aenean commodo ligula eget dolor.', 'brand': 'modelz', 'brand description': 'Brand Z'}]
+      id   price currency                        description   brand brand description
+    0  1    9.99        ¥        Lorem ipsum dolor sit amet.  modelx           Brand X
+    1  2   99.99        ¥      Consectetuer adipiscing elit.  modely           Brand Y
+    2  3  999.99        ¥  Aenean commodo ligula eget dolor.  modelz           Brand Z
     '''
 
 
