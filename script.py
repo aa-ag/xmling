@@ -7,7 +7,7 @@ If you need to parse untrusted or
 unauthenticated data see XML vulnerabilities.
 (https://docs.python.org/3/library/xml.etree.elementtree.html#module-xml.etree.ElementTree)
 '''
-# import pandas as pd
+import pandas as pd
 
 
 ###--- CODE ---###
@@ -47,22 +47,35 @@ def make_xml():
     tree.write('output_test.xml', encoding='UTF-8', xml_declaration=True)
 
 
-# def make_dataframe(output_test):
-#     attributes = output_test.attrib
+def convert_to_dataframe():
+    xtree = ET.parse("output_test.xml")
+    xroot = xtree.getroot()
 
-#     for xml in output_test.iter('product'):
-#         doct_dict = attributes.copy()
-#         doct_dict.update(xml.attrib)
-#         doct_dict['data'] = xml.text
+    df_columns = ["id", "price", "currency",
+                  "description", "brand", "brand description"]
+    df_rows = list()
 
-#         yield doct_dict
+    for node in xroot:
+        product_id = node.find("item").attrib.get('id')
+        product_price = node.find("item").attrib.get('price')
+        product_currency = node.find("item").attrib.get('currency')
+        product_description = node.find("item").text
+        product_brand = node.find("brand").attrib.get('model')
+        product_brand_description = node.find("brand").text
 
+        df_rows.append({"id": product_id, "price": product_price, "currency": product_currency,
+                        "description": product_description, "brand": product_brand, "brand description": product_brand_description})
 
-# etree = ET.parse('output_test.xml')
-# df = pd.DataFrame(list(make_dataframe(etree.getroot())))
+    print(df_rows)
 
-# print(df)
+    '''
+    [{'id': '1', 'price': '9.99', 'currency': '¥', 'description': 'Lorem ipsum dolor sit amet.', 'brand': 'modelx', 'brand description': 'Brand X'}, 
+    {'id': '2', 'price': '99.99', 'currency': '¥', 'description': 'Consectetuer adipiscing elit.', 'brand': 'modely', 'brand description': 'Brand Y'}, 
+    {'id': '3', 'price': '999.99', 'currency': '¥', 'description': 'Aenean commodo ligula eget dolor.', 'brand': 'modelz', 'brand description': 'Brand Z'}]
+    '''
+
 
 ###--- DRIVER CODE ---###
 if __name__ == "__main__":
     make_xml()
+    convert_to_dataframe()
