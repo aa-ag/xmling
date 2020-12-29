@@ -66,8 +66,10 @@ def convert_to_dataframe():
         df_rows.append({"id": product_id, "price": product_price, "currency": product_currency,
                         "description": product_description, "brand": product_brand, "brand description": product_brand_description})
 
-    resulting_df = pd.DataFrame(df_rows, columns=df_columns)
-    print(resulting_df)
+    df = pd.DataFrame(df_rows, columns=df_columns)
+
+    # display dataframe
+    print(df)
 
     '''
       id   price currency                        description   brand brand description
@@ -75,6 +77,9 @@ def convert_to_dataframe():
     1  2   99.99        ¥      Consectetuer adipiscing elit.  modely           Brand Y
     2  3  999.99        ¥  Aenean commodo ligula eget dolor.  modelz           Brand Z
     '''
+
+    # save dataframe to CSV
+    df.to_csv('xml.csv', index=False)
 
 
 ###--- DRIVER CODE ---###
