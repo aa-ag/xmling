@@ -48,6 +48,11 @@ def make_xml():
 
 
 def convert_to_dataframe():
+    '''
+    Parses the XML tree, and establishes its root. Then, 
+    for each node, it grabs each piece of data (attributes, and text),
+    creates a Pandas DataFrame and finally, saves a CSV copy too
+    '''
     xtree = ET.parse("output_test.xml")
     xroot = xtree.getroot()
 
